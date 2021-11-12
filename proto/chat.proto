@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package chatserver;
+option go_package = "/chatserver";
+
+message MessageComponent {
+    string messageId = 4;
+    string to = 3;
+    string body = 2;
+}
+
+message MessageStatus {
+    string to = 3;
+    string messageId = 1;
+    string status = 2;
+}
+
+service ChatServices {
+    rpc MessageChannel(stream MessageComponent) returns (stream MessageComponent){};
+    rpc SendStatus(MessageStatus) returns (MessageStatus) {}
+}
