@@ -5,4 +5,4 @@ clean:
 	rm -rf ./pb/*.go
 
 run:
-	go run main.go
+	go run server.go

@@ -1,6 +1,7 @@
 package main
 
 import (
+	"chatservice/chatserver"
 	"log"
 	"net"
 	"os"
@@ -26,10 +27,9 @@ func main(){
 		grpcserver := grpc.NewServer()
 
 		//register ChatService
-		/**
-		cs := chatserver.ChatServer{}
-		chatserver.RegisterServicesServer(grpcserver, &cs)
-		*/
+		
+		cs := chatserver.NewChatServicesImpl();
+		chatserver.RegisterChatServicesServer(grpcserver, cs);
 
 		//grpc listen and serve
 		err = grpcserver.Serve(listen)
